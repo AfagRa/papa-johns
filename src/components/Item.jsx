@@ -4,7 +4,7 @@ import { useOutletContext } from "react-router";
 const Item = ({ pizza, basket, setShow }) => {
   const {sizes} = useOutletContext().data
   const {addToBasket} = useOutletContext();
-  const [selectedSize, setSelectedSize] = useState(Object.keys(pizza.prices)[0]);
+  const [selectedSize, setSelectedSize] = useState(Object.keys(pizza.price)[0]);
   const [quantity, setQuantity] = useState(1);
 
   const path = '../assets/img/'  
@@ -28,7 +28,7 @@ const Item = ({ pizza, basket, setShow }) => {
           <div className="mb-4">
             <label className="block text-sm font-medium mb-2">Ölçü:</label>
             <div className="flex gap-2 flex-wrap">
-              {Object.keys(pizza.prices).map(size => (
+              {Object.keys(pizza.price).map(size => (
                 <button key={size} onClick={() => setSelectedSize(size)}
                   className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                     selectedSize == size 
@@ -54,12 +54,12 @@ const Item = ({ pizza, basket, setShow }) => {
               </button>
             </div>
             <div className="text-md font-bold">
-              {quantity * pizza.prices[selectedSize]} AZN
+              {quantity * pizza.price[selectedSize]} AZN
             </div>
           </div>
         </div>
 
-        <button onClick={() => {addToBasket({id, size: selectedSize, quant: quantity}), setShow(true)}} className="bg-[#CFEB0B] hover:bg-[#fff] border-1 cursor-pointer font-bold text-sm mt-3 py-2 px-6 mx-auto rounded-full transition-colors duration-200 transform">
+        <button onClick={() => {addToBasket({id, size: selectedSize, quant: quantity, category: 'pizza'}), setShow(true)}} className="bg-[#CFEB0B] hover:bg-[#fff] border-1 cursor-pointer font-bold text-sm mt-3 py-2 px-6 mx-auto rounded-full transition-colors duration-200 transform">
           SƏBƏTƏ ƏLAVƏ ET
         </button>
       </div>

@@ -2,24 +2,28 @@ import { Outlet } from "react-router"
 import Footer from "./Footer"
 import Header from "./Header"
 import { data } from "../data"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Basket from "./Basket"
 
 function App() {
-
   const sample = [
     {id: 2, size: 'md', quant: 1},
     {id: 5, size: 'xl', quant: 2},
     {id: 3, size: 'sm', quant: 3},
   ]
 
-  const [basket, setBasket] = useState(sample)
+  const [basket, setBasket] = useState(JSON.parse(sessionStorage.getItem('basket')) || [])
   const [show, setShow] = useState(false)
   
-  function addToBasket({id, size, quant}) {
+  useEffect(() => {
+    sessionStorage.setItem('basket', JSON.stringify(basket))
+  }, [basket])
+
+  
+  function addToBasket({id, size, quant, category}) {
     const ind = basket.findIndex(item => item.id == id && item.size == size)
     if (ind >= 0) updateBasket (ind, basket[ind].quant + quant)
-    else setBasket([...basket, { id, size, quant }])
+    else setBasket([...basket, { id, size, quant, category }])
   }
 
   function updateBasket (ind, quant) {
@@ -41,7 +45,7 @@ function App() {
         </div>
       </main>
       <Footer />
-      <Basket basket={basket} deleteFromBasket={deleteFromBasket} updateBasket={updateBasket} show={show} setShow={setShow} onHide={() => setShow(false)} pizzas={data.pizzas} />
+      <Basket basket={basket} deleteFromBasket={deleteFromBasket} updateBasket={updateBasket} show={show} setShow={setShow} onHide={() => setShow(false)} pizzas={data.pizzas} snacks={data.snacks} />
     </>
   )
 }

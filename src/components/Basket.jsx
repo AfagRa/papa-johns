@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { IoCloseSharp, IoTrashOutline } from "react-icons/io5";
 
-function Basket({show, onHide, basket, pizzas, deleteFromBasket, updateBasket}) {
+function Basket({show, onHide, basket, snacks, pizzas, deleteFromBasket, updateBasket}) {
     let path = '../assets/img/'
     const [price, setPrice] = useState(0)
     useEffect(() => {
-        let total = 0;
+        let total = 0
         basket.forEach(item => {
-            let pizza = pizzas.find(p => p.id === item.id);
-            if (pizza) {
-                total += pizza.prices[item.size] * item.quant;
-            }
+            let p
+            if (item.category == 'pizza') p = pizzas.find(elm => elm.id == item.id)
+            else if (item.category == 'snack') p = snacks.find(elm => elm.id == item.id)
+            total += p.price[item.size] * item.quant
         });
         setPrice(total);
     }, [basket])
@@ -30,9 +30,9 @@ function Basket({show, onHide, basket, pizzas, deleteFromBasket, updateBasket}) 
                 <div className="p-4 overflow-auto flex-1">
                     <h4 className="text-lg font-medium mb-4">Sifariş:</h4>
                     
-                    {/* Desktop Table View */}
+                    {/* Desktop */}
                     <div className="hidden md:block">
-                        <div style={{gridTemplateColumns: '5% 12% auto 7% 10% 15% 10% 7%'}} className="grid gap-0 text-center font-semibold rounded-lg mb-4">
+                        <div style={{gridTemplateColumns: '5% 12% auto 9% 9% 15% 10% 7%'}} className="grid gap-0 text-center font-semibold rounded-lg mb-4">
                             <div className="border border-gray-300 py-2 px-1 rounded-tl-lg">#</div>
                             <div className="border border-gray-300 py-2 px-1">Şəkil</div>
                             <div className="border border-gray-300 py-2 px-1">Ad</div>
@@ -45,22 +45,25 @@ function Basket({show, onHide, basket, pizzas, deleteFromBasket, updateBasket}) 
                         
                         <div className="space-y-2">
                             {basket.map((item, i) => {
-                                let p = pizzas.find(elm => elm.id == item.id)
+                                let p 
+                                if (item.category == 'pizza') p = pizzas.find(elm => elm.id == item.id)
+                                else if (item.category == 'snack') p = snacks.find(elm => elm.id == item.id);
+
                                 return (
-                                    <div style={{gridTemplateColumns: '5% 12% auto 7% 10% 15% 10% 7%'}} className="grid gap-0 text-center bg-white hover:bg-gray-50 transition-colors duration-200 shadow-sm rounded-lg" key={i}>
+                                    <div style={{gridTemplateColumns: '5% 12% auto 9% 9% 15% 10% 7%'}} className="grid gap-0 text-center bg-white hover:bg-gray-50 transition-colors duration-200 shadow-sm rounded-lg" key={i}>
                                         <div className="border border-gray-300 p-2 rounded-l-lg">{i + 1}</div>
                                         <div className="border border-gray-300 p-2 flex justify-center items-center">
                                             <img className="h-[40px]" src={path + p.img} alt={p.name} />
                                         </div>
                                         <div className="border border-gray-300 p-2 flex items-center justify-center">{p.name}</div>
                                         <div className="border border-gray-300 p-2 flex items-center justify-center">{item.size}</div>
-                                        <div className="border border-gray-300 p-2 flex items-center justify-center">{p.prices[item.size]}₼</div>
+                                        <div className="border border-gray-300 p-2 flex items-center justify-center">{p.price[item.size]}₼</div>
                                         <div className="border border-gray-300 p-2 flex items-center justify-center">
                                             <button onClick={() => updateBasket(i, item.quant > 1 ? (item.quant - 1) : 1)} className="bg-gray-200 hover:bg-gray-300 border-1 cursor-pointer font-bold text-sm py-1 px-3 rounded-full transition-colors duration-200 transform hover:scale-105"> - </button>
                                             <span className="p-2">{item.quant}</span>
                                             <button onClick={() => updateBasket(i, item.quant + 1)} className="bg-gray-200 hover:bg-gray-300 border-1 cursor-pointer font-bold text-sm py-1 px-3 rounded-full transition-colors duration-200 transform hover:scale-105"> + </button>
                                         </div>
-                                        <div className="border border-gray-300 p-2 flex items-center justify-center">{p.prices[item.size] * item.quant}₼</div>
+                                        <div className="border border-gray-300 p-2 flex items-center justify-center">{p.price[item.size] * item.quant}₼</div>
                                         <div className="border border-gray-300 p-2 rounded-r-lg flex items-center justify-center">
                                             <div className="cursor-pointer text-2xl" onClick={() => deleteFromBasket(i)}>
                                                 <IoTrashOutline />
@@ -72,10 +75,13 @@ function Basket({show, onHide, basket, pizzas, deleteFromBasket, updateBasket}) 
                         </div>
                     </div>
 
-                    {/* Mobile Card View */}
+                    {/* Mobile */}
                     <div className="md:hidden space-y-3">
                         {basket.map((item, i) => {
-                            let p = pizzas.find(elm => elm.id == item.id)
+                            let p
+                            if (item.category == 'pizza') p = pizzas.find(elm => elm.id == item.id)
+                            else if (item.category == 'snack') p = snacks.find(elm => elm.id == item.id);
+
                             return (
                                 <div className="bg-white border border-gray-300 rounded-lg shadow-sm p-4" key={i}>
                                     <div className="flex items-center gap-3 mb-3">
@@ -83,7 +89,7 @@ function Basket({show, onHide, basket, pizzas, deleteFromBasket, updateBasket}) 
                                         <div className="flex-1">
                                             <h3 className="font-semibold text-lg">{p.name}</h3>
                                             <p className="text-gray-600">Ölçü: {item.size}</p>
-                                            <p className="text-gray-600">Qiymət: {p.prices[item.size]}₼</p>
+                                            <p className="text-gray-600">Qiymət: {p.price[item.size]}₼</p>
                                         </div>
                                         <div className="cursor-pointer text-2xl text-red-500" onClick={() => deleteFromBasket(i)}>
                                             <IoTrashOutline />
@@ -96,7 +102,7 @@ function Basket({show, onHide, basket, pizzas, deleteFromBasket, updateBasket}) 
                                             <span className="px-4 py-2 bg-gray-100 rounded-full font-medium min-w-[50px] text-center">{item.quant}</span>
                                             <button onClick={() => updateBasket(i, item.quant + 1)} className="bg-gray-200 hover:bg-gray-300 border-1 cursor-pointer font-bold text-sm py-2 px-3 rounded-full transition-colors duration-200 transform hover:scale-105"> + </button>
                                         </div>
-                                        <div className="text-lg font-bold">{p.prices[item.size] * item.quant}₼</div>
+                                        <div className="text-lg font-bold">{p.price[item.size] * item.quant}₼</div>
                                     </div>
                                 </div>
                             )

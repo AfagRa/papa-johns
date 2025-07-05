@@ -1,12 +1,14 @@
 import { useState } from "react";
 
-const Snack = ({ snack }) => {
+const Snack = ({ snack, addToBasket, setShow }) => {
   const [quantity, setQuantity] = useState(1);
 
   const path = '../assets/img/'  
 
   const increaseQuantity = () => setQuantity(prev => prev + 1);
   const decreaseQuantity = () => setQuantity(prev => prev > 1 ? prev - 1 : 1);
+
+  const id = snack.id
 
   return (
     <div className="rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300">
@@ -32,12 +34,12 @@ const Snack = ({ snack }) => {
               </button>
             </div>
             <div className="text-md font-bold">
-              {quantity * snack.price} AZN
+              {quantity * snack.price['standard']} AZN
             </div>
           </div>
         </div>
       
-        <button className="bg-[#CFEB0B] hover:bg-[#fff] border-1 cursor-pointer text-sm font-bold mt-3 py-2 px-6 mx-auto rounded-full transition-colors duration-200 transform">
+        <button onClick={() => {addToBasket({id, size: 'standard', quant: quantity, category: 'snack'}), setShow(true)}} className="bg-[#CFEB0B] hover:bg-[#fff] border-1 cursor-pointer text-sm font-bold mt-3 py-2 px-6 mx-auto rounded-full transition-colors duration-200 transform">
           SƏBƏTƏ ƏLAVƏ ET
         </button>
       </div>
