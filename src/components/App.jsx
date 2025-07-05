@@ -1,0 +1,49 @@
+import { Outlet } from "react-router"
+import Footer from "./Footer"
+import Header from "./Header"
+import { data } from "../data"
+import { useState } from "react"
+import Basket from "./Basket"
+
+function App() {
+
+  const sample = [
+    {id: 2, size: 'md', quant: 1},
+    {id: 5, size: 'xl', quant: 2},
+    {id: 3, size: 'sm', quant: 3},
+  ]
+
+  const [basket, setBasket] = useState(sample)
+  const [show, setShow] = useState(false)
+  
+  function addToBasket({id, size, quant}) {
+    const ind = basket.findIndex(item => item.id == id && item.size == size)
+    if (ind >= 0) updateBasket (ind, basket[ind].quant + quant)
+    else setBasket([...basket, { id, size, quant }])
+  }
+
+  function updateBasket (ind, quant) {
+    let obj = {...basket[ind]}
+    obj.quant = quant
+    setBasket(basket.map((item, i) => i == ind ? obj : item))
+  }
+
+  function deleteFromBasket(ind) {
+    setBasket(basket.filter((item, i) => i != ind))
+  }
+
+  return (
+    <>
+      <Header setShow={setShow} basket={basket} />
+      <main className="py-5">
+        <div className="container mx-auto px-4">
+          <Outlet context={{data, addToBasket, basket, show, setShow}} />
+        </div>
+      </main>
+      <Footer />
+      <Basket basket={basket} deleteFromBasket={deleteFromBasket} updateBasket={updateBasket} show={show} setShow={setShow} onHide={() => setShow(false)} pizzas={data.pizzas} />
+    </>
+  )
+}
+
+export default App
