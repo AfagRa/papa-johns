@@ -21,7 +21,7 @@ export const data = {
       name: 'Marqarita',
       img: 'Marqarita.jpg',
       desc: 'Pizza sousu, ekstra mozzarella, pomidor, oreqano',
-      filter: ['vegetarian', 'classic'],
+      filter: ['vegetarian'],
       price: { xs:6, sm: 8, md: 13, lg: 16 }
     },
     {

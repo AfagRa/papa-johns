@@ -4,14 +4,9 @@ import Header from "./Header"
 import { data } from "../data"
 import { useEffect, useState } from "react"
 import Basket from "./Basket"
+import Filter from "./Filter"
 
 function App() {
-  const sample = [
-    {id: 2, size: 'md', quant: 1},
-    {id: 5, size: 'xl', quant: 2},
-    {id: 3, size: 'sm', quant: 3},
-  ]
-
   const [basket, setBasket] = useState(JSON.parse(sessionStorage.getItem('basket')) || [])
   const [show, setShow] = useState(false)
   
