@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { GiShoppingCart } from 'react-icons/gi';
 import { IoChevronDown, IoClose, IoGlobeOutline, IoMenu } from "react-icons/io5";
 import { Link, useLocation } from 'react-router';
+import { BasketContext } from '../../provider/context';
 
-const Header = ({setShow, basket}) => {
+const Header = () => {
   const [activeTab, setActiveTab] = useState('Pizzalar');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
   const location = useLocation();
+  const { basket, setShow } = useContext(BasketContext)
 
   const isOnMenuPage = location.pathname.startsWith('/menu');
 

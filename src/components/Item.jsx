@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { useOutletContext } from "react-router";
+import { useContext, useState } from "react";
+import { BasketContext, DataContext } from "../../provider/context";
 
-const Item = ({ pizza, basket, setShow }) => {
-  const {sizes} = useOutletContext().data
-  const {addToBasket} = useOutletContext();
+const Item = ({ pizza }) => {
+
+  const {sizes} = useContext(DataContext)
+  const {basketDispatch, setShow} =  useContext(BasketContext)
   const [selectedSize, setSelectedSize] = useState(Object.keys(pizza.price)[0]);
   const [quantity, setQuantity] = useState(1);
 
@@ -59,7 +60,10 @@ const Item = ({ pizza, basket, setShow }) => {
           </div>
         </div>
 
-        <button onClick={() => {addToBasket({id, size: selectedSize, quant: quantity, category: 'pizza'}), setShow(true)}} className="bg-[#CFEB0B] hover:bg-[#fff] border-1 cursor-pointer font-bold text-sm mt-3 py-2 px-6 mx-auto rounded-full transition-colors duration-200 transform">
+        <button onClick={() => {
+          basketDispatch({type: 'add', payload: {id, size: selectedSize, quant: quantity, category: 'pizza'}}), 
+          setShow(true)}} 
+          className="bg-[#CFEB0B] hover:bg-[#fff] border-1 cursor-pointer font-bold text-sm mt-3 py-2 px-6 mx-auto rounded-full transition-colors duration-200 transform">
           SƏBƏTƏ ƏLAVƏ ET
         </button>
       </div>

@@ -21,7 +21,7 @@ export const data = {
       name: 'Marqarita',
       img: 'Marqarita.jpg',
       desc: 'Pizza sousu, ekstra mozzarella, pomidor, oreqano',
-      filter: ['vegetarian'],
+      filter: ['vegan'],
       price: { xs:6, sm: 8, md: 13, lg: 16 }
     },
     {
@@ -29,7 +29,7 @@ export const data = {
       name: '4 Pendir',
       img: '4pendir.jpg',
       desc: 'Pizza sousu, mozzarella, feta, parmezan və cheddar pendirləri',
-      filter: ['vegetarian', 'cheese'],
+      filter: ['vegan'],
       price: { sm: 11, md: 16, lg: 22 }
     },
     {
@@ -37,7 +37,7 @@ export const data = {
       name: 'Qarışıq ət',
       img: 'qarishiqEt.jpg',
       desc: 'Pizza sousu, mal əti, pepperoni, italyan sosisi, vetçina, mozzarella',
-      filter: ['meat', 'premium'],
+      filter: ['meat'],
       price: { sm: 14, md: 22, lg: 29 }
     },
     {
@@ -45,7 +45,7 @@ export const data = {
       name: 'NY Style Pizza Marqarita',
       img: 'NYpepperoni.jpg',
       desc: 'Pizza sousu, pepperoni, mozzarella',
-      filter: ['meat', 'classic'],
+      filter: ['meat'],
       price: { xl: 23 }
     },
     {
@@ -53,7 +53,7 @@ export const data = {
       name: 'Star Marqarita',
       img: 'starMarqarita.jpg',
       desc: 'Ulduz kənar, mozzarella və pomidor sousu',
-      filter: ['vegetarian', 'star', 'premium'],
+      filter: ['vegan'],
       price: { md: 14 }
     },
     {
@@ -61,7 +61,7 @@ export const data = {
       name: 'Star Classic Pepperoni',
       img: 'starPepperoni.jpg',
       desc: 'Ulduz kənar, pepperoni, mozzarella',
-      filter: ['meat', 'star', 'premium'],
+      filter: ['meat'],
       price: { md: 15 }
     },
     {
@@ -69,7 +69,7 @@ export const data = {
       name: 'Star Western BBQ',
       img: 'starWesternBBQ.jpg',
       desc: 'Ulduz kənar, BBQ sousu, mal əti, soğan, mozzarella',
-      filter: ['meat', 'star', 'premium', 'bbq'],
+      filter: ['meat'],
       price: { md: 17}
     },
     {
@@ -77,7 +77,7 @@ export const data = {
       name: 'Star Chicken BBQ',
       img: 'starChickenBBQ.jpg',
       desc: 'Ulduz kənar, qril toyuğu, BBQ sousu, mozzarella',
-      filter: ['chicken', 'star', 'premium', 'bbq'],
+      filter: ['chicken'],
       price: { md: 17 }
     },
     {
@@ -85,7 +85,7 @@ export const data = {
       name: 'BBQ Chicken',
       img: 'bbqChicken.jpg',
       desc: 'BBQ sousu, qril toyuğu, pomidor, mozzarella',
-      filter: ['chicken', 'bbq'],
+      filter: ['chicken'],
       price: { sm: 14, md: 20, lg: 26 }
     },
     {
@@ -93,7 +93,7 @@ export const data = {
       name: 'Italian Sausage',
       img: 'italianSausage.jpg',
       desc: 'Pizza sousu, italyan sosisi, mozzarella',
-      filter: ['meat', 'classic'],
+      filter: ['meat'],
       price: { sm: 13, md: 19, lg: 25 }
     },
     {
@@ -101,7 +101,7 @@ export const data = {
       name: 'Greek',
       img: 'greek.jpg',
       desc: 'Pizza sousu, feta, zeytun, pomidor, mozzarella',
-      filter: ['vegetarian', 'mediterranean'],
+      filter: ['vegan'],
       price: { sm: 8, md: 13, lg: 18 }
     },
     {
@@ -109,7 +109,7 @@ export const data = {
       name: 'Hawaiian',
       img: 'hawaiian.jpg',
       desc: 'Pizza sousu, ananas, vetçina, mozzarella',
-      filter: ['meat', 'sweet'],
+      filter: ['meat'],
       price: { xs:6, sm: 10, md: 18, lg: 23 }
     },
     {
@@ -117,7 +117,7 @@ export const data = {
       name: 'Veggie Delight',
       img: 'veggieDelight.jpg',
       desc: 'Pizza sousu, göbələk, bibər, soğan, pomidor, mozzarella',
-      filter: ['vegetarian', 'healthy'],
+      filter: ['vegan'],
       price: { sm: 9, md: 13, lg: 18 }
     },
     {
@@ -141,7 +141,7 @@ export const data = {
       name: 'Crispy Cheese Spaysi İtalyan',
       img: 'crispyCheese.jpg',
       desc: 'Pizza sousu, Ekstra İtalyan sosisi, Pepperoni, Panko Mozzarella, Pul bibər',
-      filter: ['meat', 'spicy', 'premium', 'cheese'],
+      filter: ['meat', 'spicy'],
       price: { sm: 16, md: 22, lg: 28 }
     },
     {
@@ -157,7 +157,7 @@ export const data = {
       name: 'Papa Miks',
       img: 'papaMiks.jpg',
       desc: 'Çiken Barbekyu, Hot & Spaysi, Marqarita, Klassik Pepperoni',
-      filter: ['meat', 'chicken', 'spicy', 'premium'],
+      filter: ['meat', 'chicken', 'spicy'],
       price: { lg: 32 }
     },
     {
@@ -173,7 +173,7 @@ export const data = {
       name: 'Klassik Pepperoni',
       img: 'classicPepperoni.jpg',
       desc: 'Pizza sous, Pepperoni, Ekstra Mozzarella',
-      filter: ['meat', 'classic'],
+      filter: ['meat'],
       price: { sm: 12, md: 18, lg: 24 }
     },
     {
@@ -189,7 +189,7 @@ export const data = {
       name: 'Cheddar Dabl Burger',
       img: 'cheddarDoubleBurger.jpg',
       desc: '1000 ada sousu, Mal əti, Pomidor, Mozzarella, Cheddar',
-      filter: ['meat', 'cheese', 'premium'],
+      filter: ['meat'],
       price: { sm: 16, md: 22, lg: 28 }
     },
     {
@@ -197,7 +197,7 @@ export const data = {
       name: 'Cheddar Çiken Club',
       img: 'cheddarChickenClub.jpg',
       desc: 'Pizza sousu, Qril toyuğu, Pomidor, Vetçina, Mozzarella, Cheddar, Ranç sousu',
-      filter: ['chicken', 'cheese', 'premium'],
+      filter: ['chicken'],
       price: { sm: 15, md: 21, lg: 27 }
     },
     {
@@ -205,7 +205,7 @@ export const data = {
       name: 'Qarışıq Ət BBQ',
       img: 'qarishiqEtBBQ.jpg',
       desc: 'BBQ Sousu, Mal əti, Pepperoni, İtalyan Sosisi, Vetçina, Mozzarella',
-      filter: ['meat', 'bbq', 'premium'],
+      filter: ['meat'],
       price: { sm: 17, md: 23, lg: 29 }
     }
   ],

@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { BasketContext } from "../../provider/context";
 
-const Snack = ({ snack, addToBasket, setShow }) => {
-  const [quantity, setQuantity] = useState(1);
+const Snack = ({snack}) => {
+  const [quantity, setQuantity] = useState(1)
+  const {basketDispatch, setShow} = useContext(BasketContext)
 
   const path = '../assets/img/'  
 
@@ -39,7 +41,10 @@ const Snack = ({ snack, addToBasket, setShow }) => {
           </div>
         </div>
       
-        <button onClick={() => {addToBasket({id, size: 'standard', quant: quantity, category: 'snack'}), setShow(true)}} className="bg-[#CFEB0B] hover:bg-[#fff] border-1 cursor-pointer text-sm font-bold mt-3 py-2 px-6 mx-auto rounded-full transition-colors duration-200 transform">
+        <button onClick={() => {
+          basketDispatch({type: 'add', payload: {id, size: selectedSize, quant: quantity, category: 'snack'}}), 
+          setShow(true)}} 
+          className="bg-[#CFEB0B] hover:bg-[#fff] border-1 cursor-pointer font-bold text-sm mt-3 py-2 px-6 mx-auto rounded-full transition-colors duration-200 transform">
           SƏBƏTƏ ƏLAVƏ ET
         </button>
       </div>

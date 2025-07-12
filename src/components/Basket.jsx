@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoCloseSharp, IoTrashOutline } from "react-icons/io5";
+import { BasketContext } from "../../provider/context";
 
-function Basket({show, onHide, basket, snacks, pizzas, deleteFromBasket, updateBasket}) {
+function Basket() {
     let path = '../assets/img/'
+
+    const {show, setShow, basket, snacks, pizzas, basketDispatch} = useContext(BasketContext);
+
     const [price, setPrice] = useState(0)
     useEffect(() => {
         let total = 0
@@ -22,7 +26,7 @@ function Basket({show, onHide, basket, snacks, pizzas, deleteFromBasket, updateB
             <div className="bg-white rounded-4xl shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] flex flex-col">
                 <div className="flex justify-between items-center p-4 border-b">
                     <h2 className="text-xl font-bold uppercase">Səbət</h2>
-                    <button onClick={onHide} className="text-2xl cursor-pointer">
+                    <button onClick={setShow(false)} className="text-2xl cursor-pointer">
                         <IoCloseSharp />
                     </button>
                 </div>
@@ -59,9 +63,9 @@ function Basket({show, onHide, basket, snacks, pizzas, deleteFromBasket, updateB
                                         <div className="border border-gray-300 p-2 flex items-center justify-center">{item.size}</div>
                                         <div className="border border-gray-300 p-2 flex items-center justify-center">{p.price[item.size]}₼</div>
                                         <div className="border border-gray-300 p-2 flex items-center justify-center">
-                                            <button onClick={() => updateBasket(i, item.quant > 1 ? (item.quant - 1) : 1)} className="bg-gray-200 hover:bg-gray-300 border-1 cursor-pointer font-bold text-sm py-1 px-3 rounded-full transition-colors duration-200 transform hover:scale-105"> - </button>
+                                            <button onClick={() => basketDispatch({type: 'upd', payload: { ind: i, quant: (item.quant > 1 ? (item.quant - 1) : 1)}})} className="bg-gray-200 hover:bg-gray-300 border-1 cursor-pointer font-bold text-sm py-1 px-3 rounded-full transition-colors duration-200 transform hover:scale-105"> - </button>
                                             <span className="p-2">{item.quant}</span>
-                                            <button onClick={() => updateBasket(i, item.quant + 1)} className="bg-gray-200 hover:bg-gray-300 border-1 cursor-pointer font-bold text-sm py-1 px-3 rounded-full transition-colors duration-200 transform hover:scale-105"> + </button>
+                                            <button onClick={() => basketDispatch({type: 'upd', payload: { ind: i, quant: (item.quant + 1)}})} className="bg-gray-200 hover:bg-gray-300 border-1 cursor-pointer font-bold text-sm py-1 px-3 rounded-full transition-colors duration-200 transform hover:scale-105"> + </button>
                                         </div>
                                         <div className="border border-gray-300 p-2 flex items-center justify-center">{p.price[item.size] * item.quant}₼</div>
                                         <div className="border border-gray-300 p-2 rounded-r-lg flex items-center justify-center">
