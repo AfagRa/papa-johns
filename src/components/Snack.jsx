@@ -42,7 +42,7 @@ const Snack = ({snack}) => {
         </div>
       
         <button onClick={() => {
-          basketDispatch({type: 'add', payload: {id, size: selectedSize, quant: quantity, category: 'snack'}}), 
+          basketDispatch({type: 'add', payload: {id, size: 'standard', quant: quantity, category: 'snack'}}), 
           setShow(true)}} 
           className="bg-[#CFEB0B] hover:bg-[#fff] border-1 cursor-pointer font-bold text-sm mt-3 py-2 px-6 mx-auto rounded-full transition-colors duration-200 transform">
           SƏBƏTƏ ƏLAVƏ ET

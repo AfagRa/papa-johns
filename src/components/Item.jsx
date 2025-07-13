@@ -13,8 +13,6 @@ const Item = ({ pizza }) => {
   const increaseQuantity = () => setQuantity(prev => prev + 1);
   const decreaseQuantity = () => setQuantity(prev => prev > 1 ? prev - 1 : 1);
 
-  const id = pizza.id
-
   return (
     <div className="rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <div className="h-48">
@@ -61,7 +59,7 @@ const Item = ({ pizza }) => {
         </div>
 
         <button onClick={() => {
-          basketDispatch({type: 'add', payload: {id, size: selectedSize, quant: quantity, category: 'pizza'}}), 
+          basketDispatch({type: 'add', payload: {id: pizza.id, size: selectedSize, quant: quantity, category: 'pizza'}}), 
           setShow(true)}} 
           className="bg-[#CFEB0B] hover:bg-[#fff] border-1 cursor-pointer font-bold text-sm mt-3 py-2 px-6 mx-auto rounded-full transition-colors duration-200 transform">
           SƏBƏTƏ ƏLAVƏ ET

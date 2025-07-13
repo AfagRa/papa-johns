@@ -27,7 +27,7 @@ function App() {
 
   return (
     <DataContext value={data}>
-      <BasketContext value={{basket, basketDispatch, show, setShow, addToBasket, deleteFromBasket, updateBasket}}>
+      <BasketContext value={{basket, basketDispatch, show, setShow}}>
         <FilterContext value={{filter, setFilter, search, setSearch}}>
 
           <Header />

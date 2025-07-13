@@ -1,19 +1,22 @@
 import { useContext, useEffect, useState } from "react";
 import { IoCloseSharp, IoTrashOutline } from "react-icons/io5";
-import { BasketContext } from "../../provider/context";
+import { BasketContext, DataContext } from "../../provider/context";
 
 function Basket() {
     let path = '../assets/img/'
-
-    const {show, setShow, basket, snacks, pizzas, basketDispatch} = useContext(BasketContext);
-
+    const data = useContext(DataContext)
+    const pizzas = data.pizzas
+    const snacks = data.snacks
+    const {show, setShow, basket, basketDispatch} = useContext(BasketContext);
     const [price, setPrice] = useState(0)
+
+
     useEffect(() => {
         let total = 0
         basket.forEach(item => {
-            let p
+            let p 
             if (item.category == 'pizza') p = pizzas.find(elm => elm.id == item.id)
-            else if (item.category == 'snack') p = snacks.find(elm => elm.id == item.id)
+            else if (item.category == 'snack') p = snacks.find(elm => elm.id == item.id)            
             total += p.price[item.size] * item.quant
         });
         setPrice(total);
@@ -26,7 +29,7 @@ function Basket() {
             <div className="bg-white rounded-4xl shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] flex flex-col">
                 <div className="flex justify-between items-center p-4 border-b">
                     <h2 className="text-xl font-bold uppercase">Səbət</h2>
-                    <button onClick={setShow(false)} className="text-2xl cursor-pointer">
+                    <button onClick={() => setShow(false)} className="text-2xl cursor-pointer">
                         <IoCloseSharp />
                     </button>
                 </div>
@@ -69,7 +72,7 @@ function Basket() {
                                         </div>
                                         <div className="border border-gray-300 p-2 flex items-center justify-center">{p.price[item.size] * item.quant}₼</div>
                                         <div className="border border-gray-300 p-2 rounded-r-lg flex items-center justify-center">
-                                            <div className="cursor-pointer text-2xl" onClick={() => deleteFromBasket(i)}>
+                                            <div className="cursor-pointer text-2xl" onClick={() => basketDispatch({type: 'del', payload: {ind: i}})}>
                                                 <IoTrashOutline />
                                             </div>
                                         </div>
@@ -95,7 +98,7 @@ function Basket() {
                                             <p className="text-gray-600">Ölçü: {item.size}</p>
                                             <p className="text-gray-600">Qiymət: {p.price[item.size]}₼</p>
                                         </div>
-                                        <div className="cursor-pointer text-2xl text-red-500" onClick={() => deleteFromBasket(i)}>
+                                        <div className="cursor-pointer text-2xl text-red-500" onClick={() => basketDispatch({type: 'del', payload: {ind: i}})}>
                                             <IoTrashOutline />
                                         </div>
                                     </div>
@@ -117,7 +120,7 @@ function Basket() {
                 </div>
                 
                 <div className="p-4 border-t flex flex-col sm:flex-row justify-between items-center gap-4">
-                    <button onClick={onHide} className="bg-red-700 hover:bg-[#fff] text-white hover:text-black border-black border-1 font-bold px-4 py-2 rounded-[999px] cursor-pointer transition-colors duration-200 transform w-full sm:w-auto">
+                    <button onClick={() => setShow(false)} className="bg-red-700 hover:bg-[#fff] text-white hover:text-black border-black border-1 font-bold px-4 py-2 rounded-[999px] cursor-pointer transition-colors duration-200 transform w-full sm:w-auto">
                         Bağla
                     </button>
                     <button className="bg-[#CFEB0B] hover:bg-[#fff] border-1 cursor-pointer font-bold py-2 px-6 rounded-[999px] transition-colors duration-200 transform w-full sm:w-auto">
