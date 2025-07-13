@@ -49,7 +49,7 @@ const Footer = () => {
               Daha Yaxşı İnqrediyentlər. Daha Yaxşı Pizza.
             </h2>
             <div className="text-center md:text-right">
-              <img src="../public/assets/img/pj-logo.png" alt="logo" className="h-[40px]" />
+              <img src="../public/assets/img/PJ-logo.png" alt="logo" className="h-[40px]" />
             </div>
           </div>
         </div>
